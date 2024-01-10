@@ -112,8 +112,10 @@ total_distance += haversine(lon, lat, lon2_0, lat2_0)
 total_distance += haversine(lon2_0, lat2_0, lon2_45, lat2_45)
 total_distance += haversine(lon2_45, lat2_45, lon2_90, lat2_90)
 total_distance += haversine(lon, lat, lon2_90, lat2_90)
-print(total_distance)
+# print(total_distance)
 
+
+# translate coordinate values into strings:
 wyp1a, wyp1b = str(lat2_0), str(lon2_0)
 wyp1 = wyp1a + "," + wyp1b
 
@@ -123,13 +125,7 @@ wyp2 = wyp2a + "," + wyp2b
 wyp3a, wyp3b = str(lat2_90), str(lon2_90)
 wyp3 = wyp3a + "," + wyp3b
 
-print(wyp1, wyp2, wyp3)
-
-
-'''
-
-# translate coordinate values into strings:
-wyp1 = str(lat2_0)
+# print(wyp1, wyp2, wyp3)
 
 
 # read google api from txt key
@@ -151,5 +147,10 @@ dest_lat_lon = "50.85217062538557,5.6906075839614285"
 url = "https://maps.googleapis.com/maps/api/directions/json?"
 
 # get a response
-r = requests.get(url +"destination=" +dest_lat_lon + "&origin=" + dest_lat_lon + "&mode=walking" + "&units=metric" + )
-'''
+# r = requests.get(url + "destination=" + dest_lat_lon + "&origin=" + dest_lat_lon + "&mode=walking" + "&units=metric" + "&waitpoints=side_of_road%3Avia%3A" + wyp1a + "%2C" + wyp1b +"%7Cvia%3A" +wyp2a + "%2C" +wyp2b +"&key=" + api_key)
+# r = requests.get(url + "destination=50.86888167786515,5.6906075839614285" + "&origin=50.85217062538557,5.6906075839614285" + "&mode=walking" + "&units=metric" +"&key=" + api_key)
+r = requests.get(url + "destination=50.85217062538557,5.6906075839614285" + "&origin=50.85217062538557,5.6906075839614285" + "&mode=walking" + "&units=metric" +"&waypoints=via:50.86888167786515,5.6906075839614285|via:50.863985626644244,5.709329355597494|via:50.852167631771046,5.717077458750576" + "&key=" + api_key)
+print(r.json())
+
+# &waypoints=via:San Francisco|via:Mountain View|...
+# &waypoints=via%3A-37.81223%2C144.96254%7Cvia%3A-34.92788%2C138.60008
