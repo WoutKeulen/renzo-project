@@ -154,3 +154,32 @@ print(r.json())
 
 # &waypoints=via:San Francisco|via:Mountain View|...
 # &waypoints=via%3A-37.81223%2C144.96254%7Cvia%3A-34.92788%2C138.60008
+
+
+
+# added 12 1: new try for initial circle, 120, 120, 120 angles, three part split
+# quarter circle 1:
+inp_dist = 10.0
+rad_c1 = inp_dist / (2 + np.sqrt(2))
+rad_line = rad_c1 * 0.8
+in_rad_c1 = rad_c1 * 0.5
+
+angle_0, angle_90 = 0.0, 90
+angle_22, angle_45, angle_67 = 22.5, 45.0, 67.5
+angle_30, angle_60 = 30.0, 60.0
+
+# inner circle segment 1 points:
+lat_c1_1, lon_c1_1 = get_point_at_distance(lat, lon, in_rad_c1, angle_30)
+lat_c1_2, lon_c1_2 = get_point_at_distance(lat, lon, in_rad_c1, angle_60)
+# boundary circle segment 1 points:
+lat_c1_3, lon_c1_3 = get_point_at_distance(lat, lon, rad_c1, angle_22)
+lat_c1_4, lon_c1_4 = get_point_at_distance(lat, lon, rad_c1, angle_45)
+lat_c1_5, lon_c1_5 = get_point_at_distance(lat, lon, rad_c1, angle_67)
+# shared points shared between 1, 2 and 1, 4:
+lat_b12_1, lon_b12_1 = get_point_at_distance(lat, lon, rad_line, angle_0)
+lat_b12_2, lon_b12_2 = get_point_at_distance(lat, lon, rad_line, angle_90)
+
+
+# convert to strings
+
+# etc.
